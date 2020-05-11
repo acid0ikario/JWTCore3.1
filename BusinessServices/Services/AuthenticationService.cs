@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BusinessServices.Services
 {
-    class AuthenticationService
+   public class AuthenticationService
     {
     }
 }

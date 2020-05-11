@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BusinessServices.Interfaces
 {
-    interface IAuthenticationService
+    public interface IAuthenticationService
     {
          
     }
