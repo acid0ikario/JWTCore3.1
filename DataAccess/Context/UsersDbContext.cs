@@ -14,5 +14,6 @@ namespace DataAccess.Context
         }
 
        public DbSet<Users> Users { get; set; }
+        public DbSet<Roles> Roles { get; set; }
     }
 }

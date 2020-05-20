@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200511052922_UserMigration.cs" />
+    <Compile Remove="Migrations\20200511052922_UserMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200520172109_UserMigration.cs" />
+    <Compile Remove="Migrations\20200520172109_UserMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200520173242_UserMigration.cs" />
+    <Compile Remove="Migrations\20200520173242_UserMigration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />

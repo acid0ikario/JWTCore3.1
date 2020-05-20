@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using WebApi.Middleware;
 
 namespace WebApi
 {
@@ -28,6 +29,7 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTokenAuthentication(Configuration);
             services.AddDbContext<UsersDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("TestDevConn")));
         }
 
