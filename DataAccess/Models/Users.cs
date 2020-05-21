@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection;
-using System.Text;
 
 namespace DataAccess.Models
 {
-    public class Users
+    public partial class Users
     {
         [Key]
-        [Required]
         public string UserId { get; set; }
         [Required]
         public string Password { get; set; }
