@@ -11,19 +11,16 @@ namespace BusinessServices.Services
 {
     public class UsersService : IUsersService
     {
-        private readonly UsersDbContext _dbContext;
+        private readonly dbUsersContext _dbContext;
        
-        public UsersService(UsersDbContext context)
+        public UsersService(dbUsersContext context)
         {
             _dbContext = context;
            
         }
         public Users AuthUser(string user, string password)
         {
-            var AuthUser = _dbContext.Users.First(x => x.UserId == user && x.Password == password);
-            if (user == null)
-                throw new Exception("usuario o contraseña invalidos");
-
+            var AuthUser = _dbContext.Users.FirstOrDefault(x => x.UserId == user && x.Password == password);
             return AuthUser;
         }
     }
