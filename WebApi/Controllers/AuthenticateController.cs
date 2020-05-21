@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BusinessServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Models.Requests;
 
 namespace WebApi.Controllers
 {
@@ -20,10 +21,10 @@ namespace WebApi.Controllers
             _authenticationService = authenticationService;
             _userservices = usersService;
         }
-        [HttpGet]
-        public IActionResult Authenticate(string user, string password)
+        [HttpPost("Authenticate")]
+        public IActionResult Authenticate(RequestLogin user)
         {
-            var userUthenticated = _userservices.AuthUser(user, password);
+            var userUthenticated = _userservices.AuthUser(user.User, user.Password);
             var token = _authenticationService.GenerateSecurityToken(userUthenticated);
             return Ok(token);
         }
