@@ -27,7 +27,8 @@ namespace WebApi.Middleware
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidIssuer = "localhost",
+                    ValidateIssuer = false,
+                    ValidateAudience = false
                 };
             });
 

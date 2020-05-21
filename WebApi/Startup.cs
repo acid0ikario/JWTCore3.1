@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using WebApi.Middleware;
+using AutoWrapper;
 
 namespace WebApi
 {
@@ -35,7 +36,7 @@ namespace WebApi
            
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUsersService, UsersService>();
-            services.AddDbContext<UsersDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("TestDevConn")));
+            services.AddDbContext<dbUsersContext>(x => x.UseSqlServer(Configuration.GetConnectionString("TestDevConn")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,9 +48,11 @@ namespace WebApi
             }
 
             app.UseHttpsRedirection();
+            app.UseApiResponseAndExceptionWrapper(new AutoWrapperOptions { ShowStatusCode = true, EnableExceptionLogging = true });
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
