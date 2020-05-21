@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessServices.Interfaces;
+using BusinessServices.Services;
 using DataAccess.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +32,9 @@ namespace WebApi
         {
             services.AddControllers();
             services.AddTokenAuthentication(Configuration);
+           
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IUsersService, UsersService>();
             services.AddDbContext<UsersDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("TestDevConn")));
         }
 

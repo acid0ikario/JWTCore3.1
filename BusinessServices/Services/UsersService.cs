@@ -3,7 +3,6 @@ using DataAccess.Context;
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Linq;
 using DataAccess.Models;
@@ -14,7 +13,7 @@ namespace BusinessServices.Services
     {
         private readonly UsersDbContext _dbContext;
        
-        public UsersService(UsersDbContext context, IUsersService usersService)
+        public UsersService(UsersDbContext context)
         {
             _dbContext = context;
            

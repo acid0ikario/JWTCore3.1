@@ -7,17 +7,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
+
+    [ApiController]
+    [Route("[controller]")]
     public class AuthenticateController : Controller
     {
-        private readonly IUserservices _userservices;
+        private readonly IUsersService _userservices;
         private readonly IAuthenticationService _authenticationService;
-        public IActionResult Index()
+
+        public AuthenticateController(IUsersService usersService, IAuthenticationService authenticationService)
         {
-            return View();
+            _authenticationService = authenticationService;
+            _userservices = usersService;
+        }
+        [HttpGet]
+        public IActionResult Authenticate(string user, string password)
+        {
+            var userUthenticated = _userservices.AuthUser(user, password);
+            var token = _authenticationService.GenerateSecurityToken(userUthenticated);
+            return Ok(token);
         }
     }
 
-    internal interface IUserservices
-    {
-    }
+  
 }
