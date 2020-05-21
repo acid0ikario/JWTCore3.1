@@ -17,8 +17,9 @@ namespace DataAccess.Models
         [Required]
         public string Email { get; set; }
         [Required]
+        [ForeignKey("Rol")]
         public string RolId { get; set; }
 
-        public virtual Roles Role { get; set; }
+        public virtual Roles Rol { get; set; }
     }
 }

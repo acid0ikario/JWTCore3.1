@@ -2,7 +2,7 @@
 
 namespace DataAccess.Migrations
 {
-    public partial class user : Migration
+    public partial class mig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,24 +25,23 @@ namespace DataAccess.Migrations
                     UserId = table.Column<string>(nullable: false),
                     Password = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false),
-                    RolId = table.Column<string>(nullable: false),
-                    RoleId = table.Column<string>(nullable: true)
+                    RolId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
                     table.ForeignKey(
-                        name: "FK_Users_Roles_RoleId",
-                        column: x => x.RoleId,
+                        name: "FK_Users_Roles_RolId",
+                        column: x => x.RolId,
                         principalTable: "Roles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_RoleId",
+                name: "IX_Users_RolId",
                 table: "Users",
-                column: "RoleId");
+                column: "RolId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

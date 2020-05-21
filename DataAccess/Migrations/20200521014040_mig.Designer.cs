@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(UsersDbContext))]
-    [Migration("20200520201832_user")]
-    partial class user
+    [Migration("20200521014040_mig")]
+    partial class mig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,23 +49,22 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("RolId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("RolId");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("DataAccess.Models.Users", b =>
                 {
-                    b.HasOne("DataAccess.Models.Roles", "Role")
+                    b.HasOne("DataAccess.Models.Roles", "Rol")
                         .WithMany("Users")
-                        .HasForeignKey("RoleId");
+                        .HasForeignKey("RolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
